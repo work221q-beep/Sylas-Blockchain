@@ -1,0 +1,13 @@
+[package]
+name = "sylas-coinflip"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "Isolated Sylas coinflip dapp service."
+
+[dependencies]
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "io-util", "sync", "time"] }
+sha2 = "0.10"
+ed25519-dalek = "2"
+getrandom = "0.2"
+serde_json = "1"

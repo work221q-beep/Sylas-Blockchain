@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Sylas Wallet",
+  "version": "0.1.0",
+  "description": "Browser wallet and endpoint tester for the Sylas blockchain.",
+  "action": {
+    "default_title": "Sylas Wallet",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage", "clipboardWrite"],
+  "host_permissions": [
+    "https://web3.sylas.lol/*",
+    "https://sylas.lol/*",
+    "https://*.sylas.lol/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*",
+    "https://api.qrserver.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://web3.sylas.lol/*",
+        "https://sylas.lol/*",
+        "https://*.sylas.lol/*",
+        "http://localhost/*",
+        "http://127.0.0.1/*"
+      ],
+      "js": ["provider.js"],
+      "run_at": "document_start"
+    }
+  ]
+}

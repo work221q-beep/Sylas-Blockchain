@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sylas Wallet</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <button class="icon hidden" id="backButton" title="Back">&lt;</button>
+    <div>
+      <p class="eyebrow">Sylas Wallet</p>
+      <h1 id="screenTitle">Welcome</h1>
+    </div>
+    <span class="pill" id="networkState">Sylas</span>
+  </header>
+
+  <main>
+    <section class="screen active" id="screen-onboarding">
+      <div class="brand">
+        <div class="mark">S</div>
+        <h2>Enter Sylas</h2>
+        <p>Create a new wallet or import an existing recovery key to use the Sylas network.</p>
+      </div>
+      <button class="primary wide" id="startCreate">Create New Wallet</button>
+      <button class="wide" id="startImport">Import Recovery Key</button>
+    </section>
+
+    <section class="screen" id="screen-import">
+      <div class="panel">
+        <label class="label" for="importSecret">Recovery key</label>
+        <textarea id="importSecret" spellcheck="false" placeholder="Paste your Sylas recovery key export"></textarea>
+        <button class="primary wide" id="finishImport">Import Wallet</button>
+        <p class="sub" id="importStatus">Use the recovery key export shown when a Sylas wallet is created.</p>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-backup">
+      <div class="panel">
+        <h2>Save Your Recovery Key</h2>
+        <p class="sub">This is the only way to recover the wallet. Sylas cannot recover it for you.</p>
+        <textarea id="backupSecret" readonly spellcheck="false"></textarea>
+        <div class="actions">
+          <button id="copySecret">Copy</button>
+          <label class="check"><input type="checkbox" id="backupConfirmed"> I saved it</label>
+        </div>
+        <button class="primary wide" id="enterWallet">Enter Wallet</button>
+        <p class="sub" id="backupStatus"></p>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-home">
+      <div class="balance-card">
+        <span class="label">Balance</span>
+        <strong id="balance">0 SYLAS</strong>
+        <p id="addressPreview">-</p>
+      </div>
+      <div class="quick-actions">
+        <button id="openSend">Send</button>
+        <button id="openReceive">Receive</button>
+        <button id="requestAirdrop">Airdrop</button>
+        <button id="refreshWallet">Refresh</button>
+      </div>
+      <div class="panel">
+        <div class="row"><span>Network</span><strong>Sylas Mainnet</strong></div>
+        <div class="row"><span>Supply Cap</span><strong>1,000,000 SYLAS</strong></div>
+        <div class="row"><span>Nonce</span><strong id="nonce">0</strong></div>
+      </div>
+      <div class="actions vertical">
+        <button id="openNetwork">Network Diagnostics</button>
+        <button id="openBackup">Backup Recovery Key</button>
+        <button class="dangerButton" id="forgetWallet">Remove Wallet</button>
+      </div>
+      <p class="sub" id="homeStatus"></p>
+    </section>
+
+    <section class="screen" id="screen-send">
+      <div class="panel">
+        <label class="label" for="recipient">To</label>
+        <textarea id="recipient" spellcheck="false" placeholder="Recipient public key"></textarea>
+        <label class="label" for="amount">Amount</label>
+        <input id="amount" value="0" inputmode="decimal">
+        <details>
+          <summary>Advanced</summary>
+          <p class="sub" id="feeHint">Fee is quoted from Sylas node congestion.</p>
+          <label class="label" for="fee">Fee base units</label>
+          <input id="fee" value="5000" inputmode="numeric">
+        </details>
+        <button class="primary wide" id="sendTransaction">Review And Send</button>
+        <p class="sub" id="sendStatus"></p>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-receive">
+      <div class="panel">
+        <h2>Receive SYLAS</h2>
+        <img class="qr" id="receiveQr" alt="Sylas receive QR">
+        <textarea id="receiveAddress" readonly spellcheck="false"></textarea>
+        <textarea id="receiveUri" readonly spellcheck="false"></textarea>
+        <button class="primary wide" id="copyAddress">Copy Address</button>
+        <p class="sub">Share this public address to receive funds on Sylas.</p>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-network">
+      <div class="panel">
+        <div class="row"><span>Network</span><strong id="hostedNode">Sylas Mainnet</strong></div>
+        <div class="actions">
+          <button class="primary" id="runEndpointTests">Run Network Check</button>
+          <button id="copyReport">Copy Report</button>
+        </div>
+        <table>
+          <thead><tr><th>Status</th><th>Check</th><th>Result</th></tr></thead>
+          <tbody id="endpointRows"><tr><td colspan="3">No tests run.</td></tr></tbody>
+        </table>
+        <label class="label" for="rawTx">Raw transaction</label>
+        <textarea id="rawTx" spellcheck="false" placeholder="Optional TX line for transaction endpoint testing"></textarea>
+        <button class="wide" id="submitRaw">Submit Raw TX</button>
+        <pre id="endpointJson">{}</pre>
+      </div>
+    </section>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

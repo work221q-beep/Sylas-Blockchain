@@ -1,0 +1,13 @@
+[package]
+name = "sylas-blockchain"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "Sylas Rust blockchain engine with parallel execution, mmap state, TCP ingress, and web dashboard."
+
+[dependencies]
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "io-util", "sync", "time", "signal"] }
+rayon = "1"
+memmap2 = "0.9"
+sha2 = "0.10"
+ed25519-dalek = "2"

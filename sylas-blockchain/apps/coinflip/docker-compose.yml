@@ -1,0 +1,12 @@
+services:
+  coinflip:
+    build:
+      context: ../..
+      dockerfile: apps/coinflip/Dockerfile
+    restart: unless-stopped
+    environment:
+      SYLAS_COINFLIP_BIND: "0.0.0.0:5080"
+      SYLAS_NODE_URL: "${SYLAS_NODE_URL:-http://sylas:5000}"
+      SYLAS_COINFLIP_HOUSE_SECRET_HEX: "${SYLAS_COINFLIP_HOUSE_SECRET_HEX:?required}"
+    ports:
+      - "${SYLAS_COINFLIP_PORT:-5080}:5080"

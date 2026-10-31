@@ -1,0 +1,26 @@
+services:
+  sylas:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      SYLAS_HTTP_BIND: "0.0.0.0:5000"
+      SYLAS_TX_BIND: "0.0.0.0:7077"
+      SYLAS_P2P_BIND: "0.0.0.0:9090"
+      SYLAS_PUBLIC_P2P_ADDR: "${SYLAS_PUBLIC_P2P_ADDR:-}"
+      SYLAS_NODE_ID: "${SYLAS_NODE_ID:-}"
+      SYLAS_BOOTSTRAP_PEERS: "${SYLAS_BOOTSTRAP_PEERS:-}"
+      SYLAS_VALIDATORS: "${SYLAS_VALIDATORS:-}"
+      SYLAS_STATE_PATH: "/var/lib/sylas/state.mmap"
+      SYLAS_LEDGER_PATH: "/var/lib/sylas/ledger.dat"
+      SYLAS_RECEIPTS_PATH: "/var/lib/sylas/receipts.log"
+      SYLAS_STATE_CAPACITY: "${SYLAS_STATE_CAPACITY:-65536}"
+      SYLAS_MAX_BATCH: "${SYLAS_MAX_BATCH:-1024}"
+      SYLAS_GENESIS_ACCOUNTS: "${SYLAS_GENESIS_ACCOUNTS:-}"
+      SYLAS_TOKEN_PRICE_USD: "${SYLAS_TOKEN_PRICE_USD:-}"
+    volumes:
+      - sylas-data:/var/lib/sylas
+
+volumes:
+  sylas-data:
